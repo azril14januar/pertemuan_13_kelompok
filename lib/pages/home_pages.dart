@@ -1,9 +1,10 @@
 import 'dart:developer';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pertemuan_11/controller/post_controller.dart';
 import 'package:pertemuan_11/models/post.dart';
+import 'package:pertemuan_11/utils/app_routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,6 +49,7 @@ class _HomePageState extends State<HomePage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text("Post Telah terhapus"),
+                                  behavior: SnackBarBehavior.floating,
                                 ),
                               );
                               setState(() {});
@@ -63,6 +65,12 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Card(
                           child: ListTile(
+                            onTap: () {
+                              GoRouter.of(context).pushNamed(
+                                AppRoutes.post,
+                                extra: snapshot.data![index],
+                              );
+                            },
                             title: Text(
                               snapshot.data![index].title,
                               maxLines: 1,
