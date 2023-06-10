@@ -32,15 +32,13 @@ class _HomePageState extends State<HomePage> {
               );
             } else if (snapshot.hasData) {
               if (snapshot.data!.isNotEmpty) {
-                inspect(snapshot.data!.isNotEmpty);
+                inspect(snapshot.data!);
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: ListView.separated(
                     itemBuilder: (context, index) {
                       return Dismissible(
-                        key: Key(
-                          snapshot.data![index].id.toString(),
-                        ),
+                        key: Key(snapshot.data![index].id.toString()),
                         onDismissed: (direction) {
                           postController
                               .delete(snapshot.data![index].id)
@@ -48,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                             if (result) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("Post Telah terhapus"),
+                                  content: Text("Post Deleted"),
                                   behavior: SnackBarBehavior.floating,
                                 ),
                               );
@@ -56,7 +54,8 @@ class _HomePageState extends State<HomePage> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("Post Gagal terhapus"),
+                                  content: Text("Failde Deleted Post"),
+                                  behavior: SnackBarBehavior.floating,
                                 ),
                               );
                               setState(() {});
@@ -94,13 +93,20 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               } else {
-                return const Text("tidak ada data");
+                return const Text("Tidak Ada Data");
               }
             } else {
-              return const Text("error");
+              return const Text("Error");
             }
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          AppRoutes.goRouter.pushNamed(AppRoutes.addPost);
+          // AppRoutes.goRouter.pushNamed(AppRoutes.addPost);
+        },
+        label: const Text("Tambah Berita"),
       ),
     );
   }

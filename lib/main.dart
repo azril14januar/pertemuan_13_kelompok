@@ -6,16 +6,13 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'ITG Consume API',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      title: 'Consume API',
+      theme: ThemeData.dark(),
       routeInformationParser: AppRoutes.goRouter.routeInformationParser,
       routeInformationProvider: AppRoutes.goRouter.routeInformationProvider,
       routerDelegate: AppRoutes.goRouter.routerDelegate,

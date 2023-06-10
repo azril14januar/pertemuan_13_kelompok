@@ -6,10 +6,11 @@ import 'package:pertemuan_11/utils/request_helper.dart';
 
 import '../models/post.dart';
 
-class PostServices {
+class PostService {
   Future<http.Response> fetch() async {
     String endPoint = EndPoint.post;
     Uri url = Uri.parse(endPoint);
+    
     return await http.get(
       url,
       headers: RequestHelper.basicHeader(),
@@ -30,7 +31,6 @@ class PostServices {
     String endPoint = EndPoint.post;
     Uri url = Uri.parse(endPoint);
     var jsonBody = post.toMap();
-
     return await http.post(
       url,
       body: jsonEncode(jsonBody),
@@ -55,15 +55,13 @@ class PostServices {
     String? title,
     String? body,
   }) async {
-    String endPoint = "${EndPoint.post}/$id";
+    String endPoint = "${EndPoint.post}/$id}";
     Uri url = Uri.parse(endPoint);
 
     Map<String, dynamic> jsonBody = {};
-
     if (title != null) {
       jsonBody["title"] = title;
     }
-
     if (body != null) {
       jsonBody["body"] = body;
     }

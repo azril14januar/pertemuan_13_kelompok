@@ -1,16 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:html';
-import 'package:http/http.dart' as http;
 
 import '../models/post.dart';
 import '../models/comment.dart';
-
 import '../services/post_services.dart';
 
 class PostController {
   Future<List<Post>> fetchAll() async {
-    var res = await PostServices().fetch();
+    var res = await PostService().fetch();
     if (res.statusCode == 200) {
       var jsonBody = jsonDecode(res.body);
       return List.generate(
@@ -25,7 +22,7 @@ class PostController {
   }
 
   Future<List<Comment>> fetchComments(int id) async {
-    var res = await PostServices().fetchComments(id);
+    var res = await PostService().fetchComments(id);
     if (res.statusCode == 200) {
       var jsonData = jsonDecode(res.body);
       return List.generate(
@@ -38,7 +35,7 @@ class PostController {
   }
 
   Future<bool> delete(int id) async {
-    var res = await PostServices().delete(id);
+    var res = await PostService().delete(id);
     inspect(res);
     if (res.statusCode == 200) {
       return true;
