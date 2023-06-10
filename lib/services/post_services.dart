@@ -7,7 +7,7 @@ import 'package:pertemuan_11/utils/request_helper.dart';
 import '../models/post.dart';
 
 class PostService {
-  Future<http.Response> fetch() async {
+  Future<http.Response> getPostList() async {
     String endPoint = EndPoint.post;
     Uri url = Uri.parse(endPoint);
 
@@ -27,7 +27,7 @@ class PostService {
     );
   }
 
-  Future<http.Response> create(Post post) async {
+  Future<http.Response> createPost(Post post) async {
     String endPoint = EndPoint.post;
     Uri url = Uri.parse(endPoint);
     var jsonBody = post.toMap();
@@ -73,7 +73,7 @@ class PostService {
     );
   }
 
-  Future<http.Response> delete(int id) async {
+  Future<http.Response> deletePost(int id) async {
     String endPoint = "${EndPoint.post}/$id";
     Uri url = Uri.parse(endPoint);
 

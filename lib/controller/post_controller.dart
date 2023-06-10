@@ -7,7 +7,7 @@ import '../services/post_services.dart';
 
 class PostController {
   Future<List<Post>> fetchAll() async {
-    var res = await PostService().fetch();
+    var res = await PostService().getPostList();
     if (res.statusCode == 200) {
       var jsonBody = jsonDecode(res.body);
       return List.generate(
@@ -35,7 +35,7 @@ class PostController {
   }
 
   Future<bool> delete(int id) async {
-    var res = await PostService().delete(id);
+    var res = await PostService().deletePost(id);
     inspect(res);
     if (res.statusCode == 200) {
       return true;
