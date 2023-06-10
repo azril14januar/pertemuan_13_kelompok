@@ -11,7 +11,7 @@ class Comment {
     required this.body,
   });
 
-  factory Comment.fromMap(Map<String, dynamic> data) {
+  factory Comment.CreatePostfromMap(Map<String, dynamic> data) {
     return Comment(
       id: data["id"],
       name: data["name"],

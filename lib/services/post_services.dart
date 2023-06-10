@@ -10,7 +10,7 @@ class PostService {
   Future<http.Response> fetch() async {
     String endPoint = EndPoint.post;
     Uri url = Uri.parse(endPoint);
-    
+
     return await http.get(
       url,
       headers: RequestHelper.basicHeader(),

@@ -27,7 +27,7 @@ class PostController {
       var jsonData = jsonDecode(res.body);
       return List.generate(
         jsonData.length,
-        (index) => Comment.fromMap(jsonData[index]),
+        (index) => Comment.CreatePostfromMap(jsonData[index]),
       );
     } else {
       throw Exception();
